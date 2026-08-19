@@ -4,7 +4,7 @@
 # APA double-linked list consistency, TOC backup/restore, and 128 GiB slice boundary invariance.
 
 param(
-    [string]$PfsshellPath = "C:\Users\natha\Github\pfsshell\build-win\pfsshell.exe",
+    [string]$PfsshellPath = "C:\Users\natha\Github\pfsshell\build-win32\pfsshell.exe",
     [string]$HdlDumpPath = "C:\Users\natha\Github\hdl-dump\hdl_dump.exe",
     [string]$WorkingDir = "$PSScriptRoot\fixtures",
     [int]$DefaultTimeoutMs = 180000,
@@ -13,6 +13,21 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+function Assert-PeArchitectureX86 {
+    param([string]$BinaryPath)
+    if (-not (Test-Path $BinaryPath)) { throw "Binary not found: '$BinaryPath'" }
+    $bytes = [System.IO.File]::ReadAllBytes($BinaryPath)
+    $peOffset = [System.BitConverter]::ToInt32($bytes, 0x3C)
+    $machine = [System.BitConverter]::ToUInt16($bytes, $peOffset + 4)
+    if ($machine -ne 0x014C) {
+        $archStr = switch ($machine) {
+            0x8664 { "x64 (64-bit)" }
+            default { "0x$($machine.ToString('X4'))" }
+        }
+        throw "PE Architecture violation on '$BinaryPath': expected x86 32-bit (0x014C), found $archStr (machine 0x$($machine.ToString('X4')))"
+    }
+}
+
 Write-Host "==========================================================" -ForegroundColor Cyan
 Write-Host "  Starting APA / PFS Disk-Image Regression Test Harness   " -ForegroundColor Cyan
 Write-Host "==========================================================" -ForegroundColor Cyan
@@ -20,12 +35,9 @@ Write-Host "pfsshell binary: $PfsshellPath"
 Write-Host "hdl_dump binary: $HdlDumpPath"
 Write-Host "Working directory: $WorkingDir"
 
-if (-not (Test-Path $PfsshellPath)) {
-    throw "pfsshell executable not found at '$PfsshellPath'"
-}
-if (-not (Test-Path $HdlDumpPath)) {
-    throw "hdl_dump executable not found at '$HdlDumpPath'"
-}
+Assert-PeArchitectureX86 $PfsshellPath
+Assert-PeArchitectureX86 $HdlDumpPath
+Write-Host "Verified PE Architecture: both binaries are native x86 32-bit (0x014C)." -ForegroundColor Green
 
 if (Test-Path $WorkingDir) {
     Remove-Item -Path $WorkingDir -Recurse -Force
