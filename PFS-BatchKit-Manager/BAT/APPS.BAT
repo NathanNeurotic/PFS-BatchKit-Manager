@@ -90,16 +90,15 @@ CHOICE /C YN
 IF !ERRORLEVEL!==1 (
 echo\
 echo\
-echo The size must be multiplied by 128
-echo Example: 128 x 5 = 640MB
+echo Supported sizes: 8M, 16M, 32M, 64M, 128M, 256M, 512M, 1G up to 128G
 echo Max size per partition 128GB
 echo\
 echo Example:
-echo If you want a 10GB partition Type: 10G
+echo If you want an 8MB partition Type: 8M
 echo If you want a 512MB partition Type: 512M
-echo If you want a 1.5GB partition 1024 + 512 = 1536 Type: 1536M
+echo If you want a 10GB partition Type: 10G
 set /p "partsize=Enter partition size:"
-IF "!partsize!"=="" echo 128M> "%rootpath%\TMP\APPS-000.08-SIZE.txt"
+IF "!partsize!"=="" echo 128M> "%rootpath%\TMP\APPS-00002-SIZE.txt"
 echo !partsize!> "%rootpath%\TMP\APPS-00002-SIZE.txt")
 
 echo\
@@ -140,14 +139,13 @@ CHOICE /C YN
 IF !ERRORLEVEL!==1 (
 echo\
 echo\
-echo The size must be multiplied by 128
-echo Example: 128 x 5 = 640MB
+echo Supported sizes: 8M, 16M, 32M, 64M, 128M, 256M, 512M, 1G up to 128G
 echo Max size per partition 128GB
 echo\
 echo Example:
-echo If you want a 10GB partition Type: 10G
+echo If you want an 8MB partition Type: 8M
 echo If you want a 512MB partition Type: 512M
-echo If you want a 1.5GB partition 1024 + 512 = 1536 Type: 1536M
+echo If you want a 10GB partition Type: 10G
 set /p "partsize=Enter partition size:"
 IF "!partsize!"=="" echo 128M> "%rootpath%\TMP\APPS-00016-SIZE.txt"
 echo !partsize!> "%rootpath%\TMP\APPS-00016-SIZE.txt")
@@ -394,16 +392,15 @@ CHOICE /C YN
 IF !ERRORLEVEL!==1 (
 echo\
 echo\
-echo The size must be multiplied by 128
-echo Example: 128 x 5 = 640MB
+echo Supported sizes: 8M, 16M, 32M, 64M, 128M, 256M, 512M, 1G up to 128G
 echo Max size per partition 128GB
 echo\
 echo Example:
-echo If you want a 10GB partition Type: 10G
+echo If you want an 8MB partition Type: 8M
 echo If you want a 512MB partition Type: 512M
-echo If you want a 1.5GB partition 1024 + 512 = 1536 Type: 1536M
+echo If you want a 10GB partition Type: 10G
 set /p "partsize=Enter partition size:"
-IF "!partsize!"=="" echo !partsize!> "%rootpath%\TMP\APPS-00010-SIZE.txt"
+IF "!partsize!"=="" echo 128M> "%rootpath%\TMP\APPS-00010-SIZE.txt"
 echo !partsize!> "%rootpath%\TMP\APPS-00010-SIZE.txt")
  )
 )
@@ -442,14 +439,13 @@ CHOICE /C YN
 IF !ERRORLEVEL!==1 (
 echo\
 echo\
-echo The size must be multiplied by 128
-echo Example: 128 x 5 = 640MB
+echo Supported sizes: 8M, 16M, 32M, 64M, 128M, 256M, 512M, 1G up to 128G
 echo Max size per partition 128GB
 echo\
 echo Example:
-echo If you want a 10GB partition Type: 10G
+echo If you want an 8MB partition Type: 8M
 echo If you want a 512MB partition Type: 512M
-echo If you want a 1.5GB partition 1024 + 512 = 1536 Type: 1536M
+echo If you want a 10GB partition Type: 10G
 set /p "partsize=Enter partition size:"
 IF "!partsize!"=="" echo 128M> "%rootpath%\TMP\APPS-000.08-SIZE.txt"
 echo !partsize!> "%rootpath%\TMP\APPS-000.08-SIZE.txt")

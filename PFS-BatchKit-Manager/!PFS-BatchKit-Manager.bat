@@ -4038,25 +4038,24 @@ if defined UnconvertPS2PFS "%~dp0BAT\busybox" grep -F -w -m 1 "!PartName!" "%~dp
 echo ---------------------------------------------------
 if !Part_Option!==Create (
 echo.
-echo The size must be multiplied by 128
-echo Example: 128 x 5 = 640MB
+echo Supported sizes: 8M, 16M, 32M, 64M, 128M, 256M, 512M, 1G up to 128G
 echo Max size per partition 128GB
 echo.
 echo Example size:
+echo   8mb =   8M
+echo  16mb =  16M
+echo  32mb =  32M
+echo  64mb =  64M
 echo 128mb = 128M
 echo 256mb = 256M
-echo 384mb = 384M
 echo 512mb = 512M
-echo 640mb = 640M
-echo 768mb = 768M
-echo 896mb = 896M
 echo   1GB =   1G
 echo 128GB = 128G
 echo\
 echo Example: 
-echo If you want a 10GB partition Type: 10G
+echo If you want an 8MB partition Type: 8M
 echo If you want a 512MB partition Type: 512M
-echo If you want a 1.5GB partition 1024 ^+ 512 = 1536 Type: 1536M
+echo If you want a 10GB partition Type: 10G
 echo\
 echo\
 set /p "partsize=Enter partition size:"
@@ -9025,14 +9024,13 @@ echo\
 	  echo\
 
 	  echo Enter the size of your partition
-	  echo The size must be multiplied by 128
-      echo Example: 128 x 5 = 640MB
+	  echo Supported sizes: 8M, 16M, 32M, 64M, 128M, 256M, 512M, 1G up to 128G
       echo Max size per partition 128GB
       echo\
       echo Example:
-      echo If you want a 10GB partition Type: 10G
+      echo If you want an 8MB partition Type: 8M
       echo If you want a 512MB partition Type: 512M
-      echo If you want a 1.5GB partition 1024 + 512 = 1536 Type: 1536M
+      echo If you want a 10GB partition Type: 10G
 	  echo\
 	  echo If you don't know what to choose, put 128M
       set /p "partsize="
